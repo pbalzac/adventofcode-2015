@@ -19,6 +19,18 @@ def seive(goal)
     end
     first = sums[house - 1] * 10
   end
+  house - 1
+end
+
+def sieve2(goal)
+  sums = Hash.new { |h, k| h[k] = 0 }
+  first = 0
+  house = 1
+  while first < goal
+    (1..50).map { |i| sums[i * house] += house }
+    first = sums[house] * 11
+    house += 1
+  end
   house
 end
 
