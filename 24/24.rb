@@ -61,8 +61,8 @@ def smallest(nums)
           end
         else
           (n + 1..n + ((nums.length - 3 * n) / 2)).each do |m|
-             group_twos = choose(nums - g1, m).filter { |g| check(g, weight) }
-             if group_twos.any?
+             group_two = choose(nums - g1, m).find { |g| check(g, weight) }
+             if !group_two.nil?
                result << [g1]
                break
              end
@@ -85,30 +85,5 @@ def run(f)
   group_one = minimums.min_by { |a| quantum_entanglement(a) }
   p group_one
   quantum_entanglement(group_one)
-#  sums = Hash.new { |h, k| h[k] = k.reduce(&:+) }
-  # matches = []
-  # (1..nums.length / 3).each do |n|
-  #   return matches if !matches.empty?
-      
-  #   groups = choose(nums, n)
-  #   equal_weighted = groups.filter { |g| g.reduce(&:+) == weight }
-  #   if equal_weighted.any?
-  #     puts "GROUP 1 CORRECT WEIGHT #{n} #{equal_weighted.length}"
-  #     equal_weighted.each.with_index do |g, i|
-  #       puts "#{i}/#{equal_weighted.length}"
-  #       (n..(n + (nums.length - 3 * n) / 2)).each do |q|
-  #         group_twos = choose(nums - g, q)
-  #         puts "GROUP 2 PRE FILTER SIZE #{q} #{group_twos.length}"
-  #         equal_weighted2 = group_twos.filter { |g| check(g, weight) }
-  #         if equal_weighted2.any?
-  #           equal_weighted2.each do |g2|
-  #             matches << [g, g2, nums - g - g2]
-  #           end
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
-  
 end
     
